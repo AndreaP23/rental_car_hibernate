@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jwt.hibernate.bean.Prenotazione" table="prenotazione">
+        <id name="prenotazioneId" column="prenotazione_id">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="user" class="com.jwt.hibernate.bean.User" fetch="select">
+            <column name="user_id"/>
+        </many-to-one>
+        <many-to-one name="veicolo" class="com.jwt.hibernate.bean.Veicolo" fetch="select">
+            <column name="veicolo_id"/>
+        </many-to-one>
+        <property column="data_prenotazione" name="dataPrenotazione" type="java.lang.String"/>
+        <property column="data_inizio" name="dataInizio" type="java.lang.String"/>
+        <property column="data_fine" name="dataFine" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>

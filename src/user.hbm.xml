@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.jwt.hibernate.bean.User" table="USER">
+        <id name="id" column="user_id">
+            <generator class="native"/>
+        </id>
+        <property column="nome" name="nome" type="java.lang.String" />
+        <property column="cognome" name="cognome" type="java.lang.String" />
+        <property column="password" name="password" type="java.lang.String" />
+        <property column="email" name="email" type="java.lang.String" />
+        <property column="telefono" name="telefono" type="java.lang.String" />
+        <property column="data_nascita" name="dataNascita" type="java.lang.String" />
+        <property column="ruolo" name="ruolo" type="java.lang.String" />
+    </class>
+</hibernate-mapping>
