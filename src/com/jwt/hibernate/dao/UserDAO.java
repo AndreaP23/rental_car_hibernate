@@ -63,17 +63,15 @@ public class UserDAO {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
-            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
-
             User user = new User();
             user.setNome(nome);
             user.setCognome(cognome);
-            user.setPassword(hashedPassword); 
+            user.setPassword(password);
             user.setEmail(email);
             user.setTelefono(telefono);
             user.setDataNascita(dataNascita);
             user.setRuolo("Customer");
-            
+
             session.save(user);
             transaction.commit();
             System.out.println("Details Added");
@@ -84,6 +82,7 @@ public class UserDAO {
             if (session != null) session.close();
         }
     }
+
 
     
     public List<User> getUsers() throws Exception{

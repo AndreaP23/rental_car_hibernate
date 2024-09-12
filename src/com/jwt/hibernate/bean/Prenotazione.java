@@ -1,5 +1,8 @@
 package com.jwt.hibernate.bean;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Prenotazione {
 
     private int prenotazioneId;
@@ -8,6 +11,7 @@ public class Prenotazione {
     private String dataPrenotazione;
     private String dataInizio;
     private String dataFine;
+    private List<Prenotazione> prenotazioni;
 
     public Prenotazione(User user, Veicolo veicolo, String dataPrenotazione, String dataInizio, String dataFine) {
         this.user = user;
@@ -15,6 +19,11 @@ public class Prenotazione {
         this.dataPrenotazione = dataPrenotazione;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
+    }
+    
+    
+    public Prenotazione() {
+        this.prenotazioni = new LinkedList<>();  
     }
 
     public Prenotazione(int prenotazioneId, User user, Veicolo veicolo, String dataPrenotazione) {
@@ -70,6 +79,10 @@ public class Prenotazione {
 
     public void setDataFine(String dataFine) {
         this.dataFine = dataFine;
+    }
+    
+    public List<Prenotazione> getPrenotazioni(){
+    	return prenotazioni;
     }
 
     @Override

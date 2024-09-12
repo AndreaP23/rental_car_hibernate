@@ -28,7 +28,6 @@ public class Veicolo {
         this.veicoli = new LinkedList<>();  
     }
 
-    // Getter e Setter
     public int getId() {
         return id;
     }

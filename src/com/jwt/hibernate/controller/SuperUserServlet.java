@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.jwt.hibernate.bean.Prenotazione;
 import com.jwt.hibernate.bean.User;
+import com.jwt.hibernate.dao.PrenotazioneDAO;
 import com.jwt.hibernate.dao.UserDAO;
 
 
@@ -37,9 +39,13 @@ public class SuperUserServlet extends HttpServlet {
         if (user != null && "SuperUser".equals(user.getRuolo())) {
             try {
                 listUtenti(request, response);
+                listPrenotazioni(request, response);
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("SchermataSuperUser.jsp");
+                dispatcher.forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new ServletException(e); 
+                throw new ServletException(e);
             }
         } else {
             response.sendRedirect("accessoNegato.jsp");
@@ -50,13 +56,23 @@ public class SuperUserServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             UserDAO userDAO = new UserDAO();
-            List<User> users = userDAO.getUsers(); 
-            request.setAttribute("USER_LIST", users); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("SchermataSuperUser.jsp");
-            dispatcher.forward(request, response);
+            List<User> users = userDAO.getUsers();
+            request.setAttribute("USER_LIST", users);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ServletException(e); 
+            throw new ServletException(e);
+        }
+    }
+
+    private void listPrenotazioni(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            PrenotazioneDAO prenotazioniDAO = new PrenotazioneDAO();
+            List<Prenotazione> prenotazioni = prenotazioniDAO.getPrenotazione();
+            request.setAttribute("PRENOTAZIONI_LIST", prenotazioni);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException(e);
         }
     }
 }

@@ -1,4 +1,4 @@
-<%@ page import="java.util.List, com.jwt.hibernate.bean.User" %>
+<%@ page import="java.util.List, com.jwt.hibernate.bean.User, com.jwt.hibernate.bean.Prenotazione" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +57,46 @@
             %>
         </tbody>
     </table>
+    
+    <br>
+    <br>
+    <h1>Lista Prenotazioni</h1>
+<table>
+<thead>
+    <tr>
+        <th>Id Utente</th>
+        <th>Id Veicolo</th>
+        <th>Data Prenotazione</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+    </tr>
+</thead>
+<tbody>
+    <%
+    List<Prenotazione> prenotazioni = (List<Prenotazione>) request.getAttribute("PRENOTAZIONI_LIST");
+
+    if (prenotazioni != null && !prenotazioni.isEmpty()) {
+        for (Prenotazione prenotazione : prenotazioni) {
+    %>
+            <tr>
+                <td><%= prenotazione.getUser().getId() %></td>
+                <td><%= prenotazione.getVeicolo().getId() %></td>
+                <td><%= prenotazione.getDataPrenotazione() %></td>
+                <td><%= prenotazione.getDataInizio() %></td>
+                <td><%= prenotazione.getDataFine() %></td>
+            </tr>
+    <%
+        }
+    } else {
+    %>
+        <tr>
+            <td colspan="5">Nessuna prenotazione trovata</td>
+        </tr>
+    <%
+    }
+    %>
+</tbody>
+</table>
     
 </body>
 </html>

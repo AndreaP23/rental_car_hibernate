@@ -84,7 +84,7 @@ public class VeicoloDAO {
 
             Prenotazione prenotazione = new Prenotazione(user, veicolo, java.time.LocalDate.now().toString(), startDate, endDate);
 
-            session.save(prenotazione); // Save the booking
+            session.save(prenotazione); 
 
             veicolo.setDisponibilita("Non Disponibile");
             session.update(veicolo);
